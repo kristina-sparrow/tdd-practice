@@ -1,18 +1,18 @@
 function capitalize(str) {
-  if (str === undefined || str === null) return "";
+  if (typeof str !== "string") throw new Error("Argument must be a string");
 
   let newString = "";
-  let capitalizeNext = true;
+  let capitalized = false;
 
   for (let char of str) {
-    if (capitalizeNext && /[a-z]/i.test(char)) {
+    if (/[a-z]/i.test(char) && !capitalized) {
       newString += char.toUpperCase();
-      capitalizeNext = false;
+      capitalized = true;
     } else {
       newString += char;
-      capitalizeNext = /[^a-z]/i.test(char);
     }
   }
+
   return newString;
 }
 
