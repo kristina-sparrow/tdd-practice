@@ -1,31 +1,22 @@
 import reverseString from "../code/reverseString";
 
-test("One word string", () => {
-  expect(reverseString("hello")).toBe("olleh");
-});
+describe("reverseString", () => {
+  it("reverses a string", () => {
+    expect(reverseString("hello")).toBe("olleh");
+    expect(reverseString("This is a test")).toBe("tset a si sihT");
+  });
 
-test("Sentence string", () => {
-  expect(reverseString("This is a test")).toBe("tset a si sihT");
-});
+  it("reverses a string with special characters", () => {
+    expect(reverseString("Today I will be productive :)")).toBe(
+      "): evitcudorp eb lliw I yadoT"
+    );
+    expect(reverseString("!@#%!@^")).toBe("^@!%#@!");
+  });
 
-test("Special characters", () => {
-  expect(reverseString("Today I'm going to be productive :)")).toBe(
-    "): evitcudorp eb ot gniog m'I yadoT"
-  );
-});
-
-test("Is undefined", () => {
-  expect(reverseString()).toBe("Error");
-});
-
-test("Is null", () => {
-  expect(reverseString(null)).toBe("Error");
-});
-
-test("Is boolean", () => {
-  expect(reverseString(true)).toBe("Error");
-});
-
-test("Is number", () => {
-  expect(reverseString(12345)).toBe("Error");
+  it("throws an error if argument is not a string", () => {
+    expect(() => reverseString()).toThrowError("Argument must be a string");
+    expect(() => reverseString(null)).toThrowError("Argument must be a string");
+    expect(() => reverseString([])).toThrowError("Argument must be a string");
+    expect(() => reverseString(123)).toThrowError("Argument must be a string");
+  });
 });
